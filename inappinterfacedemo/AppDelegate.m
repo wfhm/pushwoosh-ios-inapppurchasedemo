@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "JsInterface.h"
+#import <Pushwoosh/Pushwoosh.h>
+#import <Pushwoosh/PWInAppManager.h>
+
 
 @interface AppDelegate ()
 
@@ -16,7 +20,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+   //-----------PUSHWOOSH PART-----------
+
+    // set custom delegate for push handling, in our case AppDelegate
+    [Pushwoosh sharedInstance].delegate = self;
+
+    //register for push notifications!
+    [[Pushwoosh sharedInstance] registerForPushNotifications];
+    [[PWInAppManager sharedManager] addJavascriptInterface:[JsInterface new] withName:@"PurchaseInterface"];
+    
     return YES;
 }
 

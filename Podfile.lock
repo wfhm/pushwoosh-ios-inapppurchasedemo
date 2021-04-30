@@ -1,0 +1,18 @@
+PODS:
+  - Pushwoosh (6.2.0):
+    - Pushwoosh/Core (= 6.2.0)
+  - Pushwoosh/Core (6.2.0)
+
+DEPENDENCIES:
+  - Pushwoosh
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Pushwoosh
+
+SPEC CHECKSUMS:
+  Pushwoosh: a3032423faeec7d015646fdd195f8d3d823b8263
+
+PODFILE CHECKSUM: 8ebff33edf7530ba98257d53f3d5c102a460b342
+
+COCOAPODS: 1.7.5

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Pushwoosh/PWAppDelegate.h>
+#import <Pushwoosh/Pushwoosh.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : PWAppDelegate<PWMessagingDelegate>
 
 
 @end

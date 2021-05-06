@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Pushwoosh/PWInAppManager.h>
 
 #import "PWPurchaseHelper.h"
 
@@ -86,6 +87,8 @@
                 if ([transaction.payment.productIdentifier isEqualToString:@"test1"]) {
                     //DO SMTH
                 }
+                
+                [[PWInAppManager sharedManager] postEvent:@"purchaseSuccess" withAttributes:[NSDictionary dictionaryWithObject:transaction.payment.productIdentifier forKey:@"productId"]];
 
                 [self.delegate PWPurchaseHelperPaymentComplete:transaction.payment.productIdentifier];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
@@ -93,6 +96,8 @@
             case SKPaymentTransactionStateFailed:
                 NSLog(@"PWPurchaseHelper - SKPaymentTransactionStateFailed: %@",transaction.error.description);
                 [self.delegate PWPurchaseHelperPaymentFailedProductIdentifier:transaction.transactionIdentifier error:transaction.error];
+                [[PWInAppManager sharedManager] postEvent:@"purchaseFail" withAttributes:[NSDictionary dictionaryWithObject:transaction.payment.productIdentifier forKey:@"productId"]];
+                
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
             case SKPaymentTransactionStateRestored:

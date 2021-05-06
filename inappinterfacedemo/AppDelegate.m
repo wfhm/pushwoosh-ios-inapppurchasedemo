@@ -32,6 +32,14 @@
     return YES;
 }
 
+//this is for iOS < 10 and for silent push notifications
+- (void)application:(UIApplication *)application
+    didReceiveRemoteNotification:(NSDictionary *)userInfo
+          fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+        [[Pushwoosh sharedInstance] handlePushReceived:userInfo];
+        completionHandler(UIBackgroundFetchResultNoData);
+}
+
 
 #pragma mark - UISceneSession lifecycle
 
